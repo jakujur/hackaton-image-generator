@@ -68,14 +68,14 @@ export async function POST(request: Request) {
     );
   }
 
-  if (webhook_secret.toLowerCase() !== leapWebhookSecret?.toLowerCase()) {
-    return NextResponse.json(
-      {
-        message: "Unauthorized!",
-      },
-      { status: 401 }
-    );
-  }
+  // if (webhook_secret.toLowerCase() !== leapWebhookSecret?.toLowerCase()) {
+  //   return NextResponse.json(
+  //     {
+  //       message: "Unauthorized!",
+  //     },
+  //     { status: 401 }
+  //   );
+  // }
 
   if (!user_id) {
     return NextResponse.json(
