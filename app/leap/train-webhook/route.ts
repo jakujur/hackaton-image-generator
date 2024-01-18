@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   const user_id = urlObj.searchParams.get("user_id");
   const webhook_secret = urlObj.searchParams.get("webhook_secret");
   const model_type = urlObj.searchParams.get("model_type");
-
+  console.warn(user_id, webhook_secret, model_type, "user_id, webhook_secret, model_type");
   if (!leapApiKey) {
     return NextResponse.json(
       {
@@ -68,14 +68,14 @@ export async function POST(request: Request) {
     );
   }
 
-  // if (webhook_secret.toLowerCase() !== leapWebhookSecret?.toLowerCase()) {
-  //   return NextResponse.json(
-  //     {
-  //       message: "Unauthorized!",
-  //     },
-  //     { status: 401 }
-  //   );
-  // }
+  if (webhook_secret.toLowerCase() !== leapWebhookSecret?.toLowerCase()) {
+    return NextResponse.json(
+      {
+        message: "Unauthorized!",
+      },
+      { status: 401 }
+    );
+  }
 
   if (!user_id) {
     return NextResponse.json(
